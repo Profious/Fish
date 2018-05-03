@@ -5,6 +5,8 @@ import com.pi4j.io.gpio.GpioFactory;
 import com.pi4j.io.gpio.GpioPinDigitalOutput;
 import com.pi4j.io.gpio.PinState;
 import com.pi4j.io.gpio.RaspiPin;
+import twitter4j.*;
+import twitter4j.conf.ConfigurationBuilder;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
