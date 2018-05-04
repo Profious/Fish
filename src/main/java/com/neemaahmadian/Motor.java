@@ -25,10 +25,10 @@ public class Motor {
         gpio = GpioFactory.getInstance();
 
         // provision gpio pins
-        pin1A = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04, "Motor1 Forwards", PinState.HIGH);
+        pin1A = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04, "Motor1 Forwards", PinState.LOW);
         pin1B = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_05, "Motor1 Backwards", PinState.LOW);
         pin1E = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_06, "Motor1 Enable", PinState.HIGH);
-        pin2A = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_23, "Motor2 Forwards", PinState.HIGH);
+        pin2A = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_23, "Motor2 Forwards", PinState.LOW);
         pin2B = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_24, "Motor2 Backwards", PinState.LOW);
         pin2E = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_25, "Motor2 Enable", PinState.HIGH);
 
