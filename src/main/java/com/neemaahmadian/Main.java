@@ -15,12 +15,10 @@ public class Main {
         MyTwitter myTwitter = new MyTwitter();
         TwitterData myData = new TwitterData(myTwitter.getLatestTweet(), myTwitter.getLatestUsername());
 
+
         myData.updateInfo();
 
 
-        if (myData.getSpeed()==3.14){
-            myRover.on(1, 1000);
-        }
 
         System.out.println("Username: " + myData.getUsername());
         System.out.println("Message: " + myData.getMessage());

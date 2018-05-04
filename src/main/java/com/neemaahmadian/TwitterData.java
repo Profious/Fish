@@ -7,6 +7,7 @@ public class TwitterData {
     private String direction;
     private int duration;
     private double speed;
+    private String action;
 
     public TwitterData(String message, String username) {
         this.username = username;
@@ -38,22 +39,21 @@ public class TwitterData {
         updateDuration();
         updateDirection();
         updateSpeed();
+        updateAction();
     }
 
-    public void updateDuration(){
-        boolean mySwitch = true;
+    public int updateDuration(){
         for (int i = 0; i<command.length; i++){
             try {
                 Integer result = Integer.valueOf(command[i]);
                 duration = result.intValue();
-                mySwitch = false;
+                return i;
             } catch (NumberFormatException e) {
                 System.out.println("No duration int: " + command[i]);
             }
         }
-        if (mySwitch) {
-            speed = 0;
-        }
+        duration = 0;
+        return -1;
     }
 
     public void updateSpeed(){
@@ -61,8 +61,10 @@ public class TwitterData {
         for (int i = 0; i<command.length; i++){
             try {
                 Double result = Double.valueOf(command[i]);
-                speed = result.doubleValue();
-                mySwitch = false;
+                if (updateDuration()!=i) {
+                    speed = result.doubleValue();
+                    mySwitch = false;
+                }
             } catch (NumberFormatException e) {
                 System.out.println("No duration int: " + command[i]);
             }
@@ -88,6 +90,17 @@ public class TwitterData {
         }
     }
 
+    public void updateAction(){
+        for (int i = 0; i<command.length; i++){
+            if (command[i].toLowerCase().equals("move")) {
+                action = "move";
+            }
+            if (command[i].toLowerCase().equals("turn")) {
+                action = "turn";
+            }
+        }
+    }
+
     public int getDuration(){
         return duration;
     }
@@ -102,6 +115,10 @@ public class TwitterData {
 
     public String getCommand(int i) {
         return command[i];
+    }
+
+    public String getAction(){
+        return action;
     }
 
     public String[] getCommand() {
