@@ -25,7 +25,7 @@ public class Motor {
     public Motor() {
         gpio = GpioFactory.getInstance();
 
-        // provision gpio pins
+        // provision GPIO pins
         pin1A = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04, "Motor1 Forwards", PinState.LOW);
         pin1B = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_05, "Motor1 Backwards", PinState.LOW);
         pin1E = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_06, "Motor1 Enable", PinState.HIGH);
@@ -53,6 +53,7 @@ public class Motor {
         System.out.println("off");
     }
 
+    //turns on the motors forwards to backwards
     public void on(double speed) {
         if (speed>0){
             pin1A.high();

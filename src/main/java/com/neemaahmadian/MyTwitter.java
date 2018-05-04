@@ -7,16 +7,12 @@ package com.neemaahmadian;
 
 import twitter4j.*;
 import twitter4j.conf.ConfigurationBuilder;
-import java.util.*;
 
 public class MyTwitter{
-    private int counter = 0;
-    private TwitterData myData;
     private String latestUsername;
 
+    //gets the latest tweet from twitter
     public String getLatestTweet() {
-        //System.out.println("Get Latest Tweet Counter: " + counter);
-        //counter++;
         ConfigurationBuilder cb = new ConfigurationBuilder();
         Twitter twitterInstance;
         Query query4Twitter;
@@ -55,6 +51,7 @@ public class MyTwitter{
         return "";
     }
 
+    //returns the latest username
     public String getLatestUsername() {
         return latestUsername;
     }

@@ -14,12 +14,13 @@ public class TwitterData {
     private double speed;
     private String action;
 
+    //constructor
     public TwitterData(String message, String username) {
         this.username = username;
         this.message = message;
     }
 
-
+    //splits the tweet up into an array of strings to be processed later
     public void generateCommand() {
         String original = getMessage().toLowerCase();
         String[] segments = original.split(" ");
@@ -35,7 +36,7 @@ public class TwitterData {
 
     }
 
-    //updates message and username using the getLatestTweet() method from MyTwitter
+    //updates all data using the getLatestTweet() method from MyTwitter
     public void updateInfo() {
         MyTwitter tweet = new MyTwitter();
         message = tweet.getLatestTweet();
@@ -47,6 +48,7 @@ public class TwitterData {
         updateAction();
     }
 
+    //updates the duration variable
     public int updateDuration(){
         for (int i = 0; i<command.length; i++){
             try {
@@ -61,6 +63,7 @@ public class TwitterData {
         return -1;
     }
 
+    //updates the speed variable
     public void updateSpeed(){
         boolean mySwitch = true;
         for (int i = 0; i<command.length; i++){
@@ -79,6 +82,7 @@ public class TwitterData {
         }
     }
 
+    //updates the direction variable
     public void updateDirection(){
         boolean mySwitch = true;
         for (int i = 0; i<command.length; i++){
@@ -95,6 +99,7 @@ public class TwitterData {
         }
     }
 
+    //updates the actoin variable
     public void updateAction(){
         for (int i = 0; i<command.length; i++){
             if (command[i].toLowerCase().equals("move")) {
@@ -106,6 +111,7 @@ public class TwitterData {
         }
     }
 
+    //standard getters
     public int getDuration(){
         return duration;
     }
@@ -134,7 +140,6 @@ public class TwitterData {
         return username;
     }
 
-    //returns message
     public String getMessage() {
         return message;
     }

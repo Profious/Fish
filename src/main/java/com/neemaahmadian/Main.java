@@ -14,8 +14,10 @@ public class Main {
 
         String oldTweet = myData.getMessage();
 
+        //keeps looping every 7 seconds to check for new tweets
         for (int i=0; i<1000; i++) {
             myData.updateInfo();
+            //if a new tweet is found, it assess what action the tweets says and executes it
             if (!myData.getMessage().equals(oldTweet)) {
                 oldTweet = myData.getMessage();
                 if (myData.getAction().equals("move")){
