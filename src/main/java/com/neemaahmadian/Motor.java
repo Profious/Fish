@@ -1,14 +1,15 @@
 package com.neemaahmadian;
 
+/**
+ * Created by Neema
+ * Allows the code to apply power to the GPIO pins and to control the motors.
+ */
+
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioFactory;
 import com.pi4j.io.gpio.GpioPinDigitalOutput;
 import com.pi4j.io.gpio.PinState;
 import com.pi4j.io.gpio.RaspiPin;
-
-/**
- * Created by Neema on 4/29/2018.
- */
 
 public class Motor {
 
@@ -83,16 +84,18 @@ public class Motor {
         if (direction.toLowerCase().equals("r")){
             pin1A.high();
             pin2A.low();
-            try{ Thread.sleep(duration);} catch(InterruptedException e){ System.out.println("Interrupted");}
             pin1B.low();
             pin2B.low();
         } else if (direction.toLowerCase().equals("l")) {
             pin1A.low();
             pin2A.high();
-            try{ Thread.sleep(duration);} catch(InterruptedException e){ System.out.println("Interrupted");}
             pin1B.low();
             pin2B.low();
         }
+        try{ Thread.sleep(duration);} catch(InterruptedException e){ System.out.println("Interrupted");}
+        pin1A.low();
+        pin2A.low();
+
     }
 
     //didn't end up using this PWM method because I found out that pi4j has a built in one that works better

@@ -1,5 +1,10 @@
 package com.neemaahmadian;
 
+/**
+ * Created by Neema
+ * Processes the data retrieved through twitter
+ */
+
 public class TwitterData {
     private String username;
     private String message;

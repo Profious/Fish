@@ -1,5 +1,10 @@
 package com.neemaahmadian;
 
+/**
+ * Created by Neema
+ * Used to directly access twitter
+ */
+
 import twitter4j.*;
 import twitter4j.conf.ConfigurationBuilder;
 import java.util.*;
