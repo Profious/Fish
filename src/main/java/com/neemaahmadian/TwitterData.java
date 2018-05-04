@@ -4,6 +4,7 @@ public class TwitterData {
     private String username;
     private String message;
     private String[] command;
+    private String direction;
     private int duration;
     private int speed;
 
@@ -44,6 +45,19 @@ public class TwitterData {
                 //return result.doubleValue();
                 Integer result = Integer.valueOf(command[i]);
                 return result.intValue();
+            } catch (NumberFormatException e) {
+                System.out.println("No duration int: " + command[i]);
+            }
+        }
+        return 0;
+    }
+
+    public double updateSpeed(){
+        for (int i = 0; i<command.length; i++){
+            boolean isNumeric = true;
+            try {
+                Double result = Double.valueOf(command[i]);
+                return result.doubleValue();
             } catch (NumberFormatException e) {
                 System.out.println("No duration int: " + command[i]);
             }

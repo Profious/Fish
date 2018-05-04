@@ -11,7 +11,6 @@ import com.pi4j.io.gpio.RaspiPin;
  */
 
 public class Motor {
-    private String name;
 
     final GpioController gpio;
     final GpioPinDigitalOutput pin1A;
@@ -22,8 +21,7 @@ public class Motor {
     final GpioPinDigitalOutput pin2E;
 
     //constructor
-    public Motor(String name) {
-        this.name = name;
+    public Motor() {
         gpio = GpioFactory.getInstance();
 
         // provision gpio pins
@@ -54,8 +52,8 @@ public class Motor {
         System.out.println("off");
     }
 
-    public void on(int direction) {
-        if (direction>0){
+    public void on(double speed) {
+        if (speed>0){
             pin1A.high();
             pin2A.high();
             pin1B.low();
@@ -70,13 +68,30 @@ public class Motor {
     }
 
     //turns the motor on for a certain amount of time
-    public void on(int direciton, int milliseconds) {
-        on(direciton);
+    public void on(double speed, int milliseconds) {
+        on(speed);
         try {
             Thread.sleep(milliseconds); //sleep amount of milliseconds
             off();
         } catch (InterruptedException e) {
             System.out.println("got interrupted!");
+        }
+    }
+
+    //allows the rover to turn in a certain direction for a specified amount of time in milliseconds
+    public void turn(String direction, int duration){
+        if (direction.toLowerCase().equals("r")){
+            pin1A.high();
+            pin2A.low();
+            try{ Thread.sleep(duration);} catch(InterruptedException e){ System.out.println("Interrupted");}
+            pin1B.low();
+            pin2B.low();
+        } else if (direction.toLowerCase().equals("l")) {
+            pin1A.low();
+            pin2A.high();
+            try{ Thread.sleep(duration);} catch(InterruptedException e){ System.out.println("Interrupted");}
+            pin1B.low();
+            pin2B.low();
         }
     }
 
@@ -88,15 +103,14 @@ public class Motor {
         int numbOfLoops = duration*(1000/resolution);
         for(int i=0; i<numbOfLoops; i++){
             if (i<ratio){
-                System.out.println("ONIT");
+                System.out.println("ON");
                 on(direction);
                 try{ Thread.sleep(resolution);} catch(InterruptedException e){ System.out.println("Interrupted");}
             } else {
-                System.out.println("OFFIT");
+                System.out.println("OFF");
                 off();
                 try{ Thread.sleep(resolution);} catch(InterruptedException e){ System.out.println("Interrupted");}
             }
         }
-
     }
 }

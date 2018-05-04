@@ -11,7 +11,22 @@ import twitter4j.conf.ConfigurationBuilder;
 public class Main {
     public static void main(String[] args) throws InterruptedException {
 
-        System.out.println("Start");
+        Motor myRover = new Motor();
+        myRover.on(1);
+
+        try {
+            Thread.sleep(2000); //sleep amount of milliseconds
+        } catch (InterruptedException e) {
+            System.out.println("got interrupted!");
+        }
+
+        myRover.off();
+        myRover.on(-1, 2000);
+        myRover.on(1, 2000);
+
+        myRover.turn("R", 3000);
+        myRover.turn("L", 3000);
+        /*System.out.println("Start");
 
         System.out.println("<--Pi4J--> GPIO Control Example ... started.");
 
@@ -61,13 +76,13 @@ public class Main {
 
         // turn on gpio pin #01 for 1 second and then off
         System.out.println("--> GPIO state should be: ON for only 1 second");
-        pinA.pulse(1000, true); // set second argument to 'true' use a blocking call*/
+        pinA.pulse(1000, true); // set second argument to 'true' use a blocking call
 
         // stop all GPIO activity/threads by shutting down the GPIO controller
         // (this method will forcefully shutdown all GPIO monitoring threads and scheduled tasks)
         gpio.shutdown();
 
-        System.out.println("Exiting ControlGpioExample");
+        System.out.println("Exiting ControlGpioExample");*/
 
     }
 }
